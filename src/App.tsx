@@ -5,6 +5,7 @@ import axios from "axios";
 import type { folderDocument } from "./globaltypes";
 
 function App() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [file, setFile] = useState<File | null>(null);
   const [folderPath, setFolderPath] = useState<string>("");
  
@@ -27,7 +28,7 @@ function App() {
      
       try {
         const response = await axios.post(
-          "http://13.126.241.94:3010/documents",
+          `${apiUrl}/documents`,
           formData,
           {
             headers: {
@@ -50,7 +51,7 @@ const fetchFolderdocuments=async()=>{
     setDocuments([]);
     return;
   }
-  const response=await axios.get(`http://13.126.241.94:3010/folders/${folderId}/${folderPath}/documents`)
+  const response=await axios.get(`${apiUrl}/folders/${folderId}/${folderPath}/documents`)
   console.log("response",response.data)
   setDocuments(response.data|| []);
 
@@ -64,7 +65,7 @@ const openDocumentcontent=async(filepath:string)=>{
   const encodedFilepath = encodeURIComponent(filepath);
 
   
-  const response=await axios.get(`http://13.126.241.94:3010/documents/${encodedFilepath}`,{responseType:'blob'})
+  const response=await axios.get(`${apiUrl}/documents/${encodedFilepath}`,{responseType:'blob'})
   console.log("response",response.data)
   const url = window.URL.createObjectURL(new Blob([response.data]));
   const a = document.createElement('a');

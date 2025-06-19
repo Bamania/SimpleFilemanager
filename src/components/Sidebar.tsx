@@ -5,12 +5,15 @@ import type { Folder, SidebarProps } from "../globaltypes";
 const Sidebar: React.FC<SidebarProps>  = ({handleFolderid,handleFolderpath}) => {
   const [foldername, setFoldername] = useState<string>("");
   const [folders,setFolders] = useState<Array<Folder>>([]);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+
   useEffect( () => {
      getFolders()
   }, []);
 
   async function getFolders(){
-    const response = await axios.get("http://13.126.241.94:3010/folders");
+    const response = await axios.get(`${apiUrl}/folders`);
     console.log(response.data.data)
     setFolders(response.data.data)
 
@@ -18,7 +21,7 @@ const Sidebar: React.FC<SidebarProps>  = ({handleFolderid,handleFolderpath}) => 
 
   const handleCreateFolder = async () => {
     if (!foldername.trim()) return;
-    const response = await axios.post("http://13.126.241.94:3010/folders", {
+    const response = await axios.post(`${apiUrl}/folders`, {
       name: foldername,
     });
     console.log("response from the create folder",response.data)
