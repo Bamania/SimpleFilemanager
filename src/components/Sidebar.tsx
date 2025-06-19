@@ -14,7 +14,6 @@ const Sidebar: React.FC<SidebarProps>  = ({handleFolderid,handleFolderpath}) => 
 
   async function getFolders(){
     const response = await axios.get(`${apiUrl}/folders`);
-    console.log(response.data.data)
     setFolders(response.data.data)
 
   }
@@ -24,7 +23,7 @@ const Sidebar: React.FC<SidebarProps>  = ({handleFolderid,handleFolderpath}) => 
     const response = await axios.post(`${apiUrl}/folders`, {
       name: foldername,
     });
-    console.log("response from the create folder",response.data)
+ 
     if (response.data) {
       setFoldername("");
       setFolders(prev => [...prev, response.data.folder]);

@@ -19,12 +19,10 @@ function App() {
     if (file && folderPath) {
      
       const formData = new FormData();
-      console.log("formData intialized")
 
       
       formData.append("parentPath", folderPath); 
       formData.append("file", file);           
-      console.log("formData",formData)
      
       try {
         const response = await axios.post(
@@ -37,8 +35,10 @@ function App() {
           }
         );
 
-        console.log("Upload successful:", response.data);
-        alert("Upload successful");
+        if (response.data) {
+          alert("Upload successful");
+          fetchFolderdocuments(); //refetchjng the docs so that you dont have to refresh the page
+        }
       } catch (error) {
         console.error("Upload failed:", error);
       }
@@ -81,13 +81,10 @@ const openDocumentcontent=async(filepath:string)=>{
       <Sidebar  handleFolderid={setFolderId} handleFolderpath={setFolderPath}/>
       {/* Main Content: Documents in Folder */}
       <main className="flex-1 flex flex-col items-center justify-start p-10">
-        {/* Display Selected Folder ID */}
-        
-        {/* Upload Document to Folder */}
+     
         <div className="w-full max-w-xl bg-white rounded-xl shadow-lg p-8 mb-8 border border-gray-200">
           <h3 className="text-lg font-semibold mb-4">Upload Document for this folder {folderId}</h3>
-          {/* FilePath input field */}
-
+       
           <input
             type="text"
             value={folderPath}
