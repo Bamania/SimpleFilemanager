@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "docker": "docker build -t filemanager . && docker run -d -p 5173:5173 filemanager"
+    "docker:run": "docker run -d -p 5173:5173 filemanager",
+    "docker:build": "docker build -t filemanager ."
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
