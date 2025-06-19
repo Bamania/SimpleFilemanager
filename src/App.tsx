@@ -147,8 +147,30 @@ const openDocumentcontent=async(filepath:string)=>{
             )}
           </ul>
         </div>
+        <div className="w-full max-w-xl flex justify-end mt-4">
+      <button
+        onClick={() => window.open('https://www.tldraw.com/f/8xINRuZ6KQennZs-A6eH1?d=v-1074.3266.4399.2264.f1PeytGz4sTa-2335mLpu', '_blank')}
+        className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-green-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-5 h-5 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13 7h6m0 0v6m0-6L10 19M5 19h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+     Small Props Flow
+      </button>
+    </div>
       </main>
-
+    
      
     </div>
   );
